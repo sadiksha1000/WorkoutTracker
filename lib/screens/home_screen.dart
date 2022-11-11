@@ -21,12 +21,12 @@ class HomeScreen extends StatelessWidget {
           children: [
             Text("Hello Amara",
                 style: Theme.of(context).textTheme.displayMedium!),
-            SizedBox(height: 13),
+            // SizedBox(height: 10),
             CalendarWidget(),
-            SizedBox(height: 25),
+            // SizedBox(height: 25),
             Row(
               children: [
-                Image.asset('assets/runner.webp', width: 210),
+                Image.asset('assets/runner.webp', width: 230),
                 Column(
                   children: [
                     Text('Today you run',
@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
+                      children: const [
                         StatsWidget(
                           statIcon: Icons.directions_walk_rounded,
                           value: '1234',
@@ -126,9 +126,7 @@ class HomeScreen extends StatelessWidget {
                   NavBar(
                     navIcon: Icons.watch_later_rounded,
                     tapFunc: () {
-                      print("Can tap");
                       Navigator.of(context).pushNamed(overviewRoute);
-                      print("tap tap");
                     },
                   ),
                   NavBar(
@@ -161,9 +159,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        tapFunc;
-      },
+      onTap: tapFunc,
       child: Container(
         child: Icon(
           navIcon,

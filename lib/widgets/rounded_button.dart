@@ -22,6 +22,12 @@ class RoundedButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTapFunc,
       child: Container(
+        height: 45,
+        width: 135,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: butColor,
+        ),
         child: Center(
             child: Text(
           title,
@@ -31,12 +37,6 @@ class RoundedButton extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
         )),
-        height: 45,
-        width: 135,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: butColor,
-        ),
       ),
     );
   }
