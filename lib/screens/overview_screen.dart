@@ -151,13 +151,60 @@ class OverviewScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 17),
                     child: Container(
-                      width: double.infinity,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 19, 130, 221),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
+                        width: double.infinity,
+                        height: 145,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 19, 130, 221),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 18,
+                            right: 18,
+                            top: 18,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              WeeklyStats(
+                                height: 62,
+                                label: 'Mon',
+                                statColor: Colors.white,
+                              ),
+                              WeeklyStats(
+                                height: 70,
+                                label: 'Tue',
+                                statColor: Colors.white,
+                              ),
+                              WeeklyStats(
+                                height: 82,
+                                label: 'Wed',
+                                statColor: Colors.redAccent,
+                              ),
+                              WeeklyStats(
+                                height: 65,
+                                label: 'Thu',
+                                statColor: Colors.white,
+                              ),
+                              WeeklyStats(
+                                height: 45,
+                                label: 'Fri',
+                                statColor: Colors.white,
+                              ),
+                              WeeklyStats(
+                                height: 50,
+                                label: 'Sat',
+                                statColor: Colors.white,
+                              ),
+                              WeeklyStats(
+                                height: 35,
+                                label: 'Sun',
+                                statColor: Colors.white,
+                              ),
+                            ],
+                          ),
+                        )),
                   ),
                   Container(
                       width: 60,
@@ -177,6 +224,40 @@ class OverviewScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class WeeklyStats extends StatelessWidget {
+  final double height;
+  final Color statColor;
+  final String label;
+  const WeeklyStats({
+    Key? key,
+    required this.height,
+    required this.statColor,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          label,
+          style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                color: Colors.white,
+              ),
+        ),
+        Container(
+          height: height,
+          width: 30,
+          decoration: BoxDecoration(
+            color: statColor,
+          ),
+        ),
+      ],
     );
   }
 }
