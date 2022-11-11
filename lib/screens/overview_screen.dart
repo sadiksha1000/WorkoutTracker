@@ -1,307 +1,192 @@
 import 'package:flutter/material.dart';
 import 'package:workout_tracker/constants/navigation.dart';
+import 'package:workout_tracker/widgets/weekend.dart';
+import 'package:workout_tracker/widgets/workout.dart';
 
 class OverviewScreen extends StatelessWidget {
   const OverviewScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    print("Width$width");
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 19, 130, 221),
-      body: Container(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(25),
-              child: Text('Current Progress',
-                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      )),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(homeRoute);
-                  },
-                  child: Icon(
-                    Icons.arrow_back_ios_rounded,
-                    color: Colors.white.withOpacity(0.3),
-                    size: 45,
-                  ),
-                ),
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Container(
-                      width: 210,
-                      height: 210,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(500),
-                          color: Colors.white.withOpacity(0.2)),
-                    ),
-                    Container(
-                      width: 170,
-                      height: 170,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(500),
-                        color: Colors.white,
-                      ),
-                    ),
-                    Container(
-                      width: 140,
-                      height: 140,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(500),
-                        color: Colors.redAccent,
-                      ),
-                    ),
-                    Container(
-                      width: 125,
-                      height: 125,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(500),
-                        color: Colors.white,
-                      ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('100%',
-                            style: Theme.of(context)
-                                .textTheme
-                                .displayLarge!
-                                .copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.redAccent,
-                                  fontSize: 37,
-                                )),
-                        Text('complete',
-                            style: Theme.of(context).textTheme.displaySmall)
-                      ],
-                    ),
-                  ],
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: Colors.white.withOpacity(0.3),
-                  size: 45,
-                ),
-              ],
-            ),
-            Container(
-              height: 470,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(45),
-                  topRight: Radius.circular(45),
-                ),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(height * 0.026),
+                child: Text('Current Progress',
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        )),
               ),
-              child: Column(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Chip(
-                    backgroundColor: Colors.redAccent,
-                    labelPadding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 2,
-                    ),
-                    label: Text(
-                      'Workout Type',
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(homeRoute);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_rounded,
+                      color: Colors.white.withOpacity(0.3),
+                      size: 45,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  Stack(
+                    alignment: AlignmentDirectional.center,
                     children: [
-                      SquareInfo(
-                        containerColor: Colors.grey.withOpacity(0.3),
-                        icon: Icons.heart_broken_rounded,
-                        iconColor: Colors.grey,
-                        textColor: Colors.grey,
-                        title: 'Cardio',
+                      Container(
+                        width: height * 0.30,
+                        height: height * 0.30,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(500),
+                            color: Colors.white.withOpacity(0.2)),
                       ),
-                      const SquareInfo(
-                        containerColor: Colors.redAccent,
-                        icon: Icons.fitness_center_outlined,
-                        iconColor: Colors.white,
-                        textColor: Colors.black,
-                        title: 'Power',
+                      Container(
+                        width: height * 0.25,
+                        height: height * 0.25,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(500),
+                          color: Colors.white,
+                        ),
                       ),
-                      SquareInfo(
-                        containerColor: Colors.grey.withOpacity(0.3),
-                        icon: Icons.directions_walk_sharp,
-                        iconColor: Colors.grey,
-                        textColor: Colors.grey,
-                        title: 'Endurance',
+                      Container(
+                        width: height * 0.2,
+                        height: height * 0.2,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(500),
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                      Container(
+                        width: height * 0.185,
+                        height: height * 0.185,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(500),
+                          color: Colors.white,
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('100%',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayLarge!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.redAccent,
+                                    fontSize: 37,
+                                  )),
+                          Text('complete',
+                              style: Theme.of(context).textTheme.displaySmall)
+                        ],
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 17),
-                    child: Container(
-                        width: double.infinity,
-                        height: 145,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 19, 130, 221),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 18,
-                            right: 18,
-                            top: 18,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              WeeklyStats(
-                                height: 62,
-                                label: 'Mon',
-                                statColor: Colors.white,
-                              ),
-                              WeeklyStats(
-                                height: 70,
-                                label: 'Tue',
-                                statColor: Colors.white,
-                              ),
-                              WeeklyStats(
-                                height: 82,
-                                label: 'Wed',
-                                statColor: Colors.redAccent,
-                              ),
-                              WeeklyStats(
-                                height: 65,
-                                label: 'Thu',
-                                statColor: Colors.white,
-                              ),
-                              WeeklyStats(
-                                height: 45,
-                                label: 'Fri',
-                                statColor: Colors.white,
-                              ),
-                              WeeklyStats(
-                                height: 50,
-                                label: 'Sat',
-                                statColor: Colors.white,
-                              ),
-                              WeeklyStats(
-                                height: 35,
-                                label: 'Sun',
-                                statColor: Colors.white,
-                              ),
-                            ],
-                          ),
-                        )),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: Colors.white.withOpacity(0.3),
+                    size: 45,
                   ),
-                  Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(500),
-                        color: Colors.redAccent,
-                      ),
-                      child: const Icon(
-                        Icons.add,
-                        size: 38,
-                        color: Colors.white,
-                      )),
                 ],
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class WeeklyStats extends StatelessWidget {
-  final double height;
-  final Color statColor;
-  final String label;
-  const WeeklyStats({
-    Key? key,
-    required this.height,
-    required this.statColor,
-    required this.label,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          label,
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                color: Colors.white,
+              Padding(
+                padding: EdgeInsets.only(top: 5),
+                child: Container(
+                  height: height * 0.75,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(45),
+                      topRight: Radius.circular(45),
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Chip(
+                        backgroundColor: Colors.redAccent,
+                        labelPadding: EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: height * 0.002,
+                        ),
+                        label: Text(
+                          'Workout Type',
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall!
+                              .copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                        ),
+                      ),
+                      width < 450
+                          ? Container(
+                              height: height * 0.47,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Workout(),
+                                  Weekend(),
+                                ],
+                              ),
+                            )
+                          : Row(children: [
+                              Container(
+                                width: height * 0.95,
+                                child: Workout(),
+                              ),
+                              Container(
+                                width: height * 0.95,
+                                child: Weekend(),
+                              ),
+                            ]),
+                      // width < 450
+                      //     ? Workout()
+                      //     : Container(
+                      //         width: height * 0.95,
+                      //         child: Workout(),
+                      //       ),
+                      // width < 450
+                      //     ? Weekend()
+                      //     : Container(
+                      //         width: height * 0.95,
+                      //         child: Weekend(),
+                      //       ),
+                      Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(500),
+                            color: Colors.redAccent,
+                          ),
+                          child: const Icon(
+                            Icons.add,
+                            size: 38,
+                            color: Colors.white,
+                          )),
+                    ],
+                  ),
+                ),
               ),
-        ),
-        Container(
-          height: height,
-          width: 30,
-          decoration: BoxDecoration(
-            color: statColor,
+            ],
           ),
         ),
-      ],
-    );
-  }
-}
-
-class SquareInfo extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final Color iconColor;
-  final Color containerColor;
-  final Color textColor;
-  const SquareInfo({
-    Key? key,
-    required this.icon,
-    required this.title,
-    required this.iconColor,
-    required this.containerColor,
-    required this.textColor,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            width: 85,
-            height: 85,
-            decoration: BoxDecoration(
-              color: containerColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Icon(
-              icon,
-              size: 43,
-              color: iconColor,
-            )),
-        Text(
-          title,
-          style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                color: textColor,
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-              ),
-        )
-      ],
+      ),
     );
   }
 }

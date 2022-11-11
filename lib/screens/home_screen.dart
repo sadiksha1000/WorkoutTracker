@@ -10,23 +10,35 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(height * 0.012),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text("Hello Amara",
-                style: Theme.of(context).textTheme.displayMedium!),
+            width < 450
+                ? Text("Hello Amara",
+                    style: Theme.of(context).textTheme.displayMedium!)
+                : Center(
+                    child: Text("Hello Amara",
+                        style: Theme.of(context).textTheme.displayMedium!),
+                  ),
             // SizedBox(height: 10),
-            CalendarWidget(),
+            width < 450
+                ? CalendarWidget()
+                : Container(
+                    width: height * 2,
+                    child: CalendarWidget(),
+                  ),
             // SizedBox(height: 25),
             Row(
               children: [
-                Image.asset('assets/runner.webp', width: 230),
+                Image.asset('assets/runner.webp', width: height * 0.3),
                 Column(
                   children: [
                     Text('Today you run',

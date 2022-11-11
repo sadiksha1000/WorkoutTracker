@@ -9,6 +9,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 19, 130, 221),
       body: Container(
@@ -17,10 +18,10 @@ class LoginScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 200),
+            SizedBox(height: height * 0.2),
             Image.asset(
               'assets/fire.png',
-              height: 170,
+              height: height * 0.2,
             ),
             Text('FIREFIT',
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
