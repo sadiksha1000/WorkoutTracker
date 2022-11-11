@@ -44,7 +44,7 @@ class MiniCalendar extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       children: [
         Container(
-          height: 65,
+          height: 69,
           width: 48,
           decoration: BoxDecoration(
             color: background,

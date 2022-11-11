@@ -7,30 +7,36 @@ class RoundedButton extends StatelessWidget {
   final String title;
   final Color butColor;
   final Color textColor;
-  const RoundedButton({
+  final VoidCallback onTapFunc;
+
+  RoundedButton({
     Key? key,
     required this.title,
     required this.butColor,
     required this.textColor,
+    required this.onTapFunc,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-          child: Text(
-        title,
-        style: Theme.of(context).textTheme.displayMedium!.copyWith(
-              fontSize: 23,
-              color: textColor,
-              fontWeight: FontWeight.w600,
-            ),
-      )),
-      height: 45,
-      width: 135,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: butColor,
+    return GestureDetector(
+      onTap: onTapFunc,
+      child: Container(
+        child: Center(
+            child: Text(
+          title,
+          style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                fontSize: 23,
+                color: textColor,
+                fontWeight: FontWeight.w600,
+              ),
+        )),
+        height: 45,
+        width: 135,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: butColor,
+        ),
       ),
     );
   }

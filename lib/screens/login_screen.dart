@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:workout_tracker/constants/navigation.dart';
 import 'package:workout_tracker/widgets/rounded_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -38,12 +39,16 @@ class LoginScreen extends StatelessWidget {
               title: 'Sign Up',
               butColor: Colors.white,
               textColor: Color.fromARGB(255, 19, 130, 221),
+              onTapFunc: () {},
             ),
             SizedBox(height: 15),
             RoundedButton(
               title: 'Login',
               butColor: Colors.white,
               textColor: Color.fromARGB(255, 19, 130, 221),
+              onTapFunc: () {
+                Navigator.of(context).pushNamed(homeRoute);
+              },
             ),
             SizedBox(height: 15),
             Text(

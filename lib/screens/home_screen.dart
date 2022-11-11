@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:workout_tracker/constants/navigation.dart';
 import 'package:workout_tracker/widgets/calendar.dart';
 import 'package:workout_tracker/widgets/rounded_button.dart';
 
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text("Hello Amara",
                 style: Theme.of(context).textTheme.displayMedium!),
@@ -50,6 +52,7 @@ class HomeScreen extends StatelessWidget {
                       title: 'Details',
                       butColor: Colors.redAccent,
                       textColor: Colors.white,
+                      onTapFunc: () {},
                     )
                   ],
                 )
@@ -64,6 +67,7 @@ class HomeScreen extends StatelessWidget {
                     color: Color.fromARGB(255, 19, 130, 221),
                     borderRadius: BorderRadius.circular(30)),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -84,14 +88,89 @@ class HomeScreen extends StatelessWidget {
                           subValue: 'calories',
                         )
                       ],
-                    )
+                    ),
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text('Live tracking',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  )),
+                          Image.asset(
+                            'assets/watch.png',
+                            height: 180,
+                            width: 200,
+                          ),
+                        ])
                   ],
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  NavBar(
+                    navIcon: Icons.home_rounded,
+                    tapFunc: () {},
+                  ),
+                  NavBar(
+                    navIcon: Icons.person,
+                    tapFunc: () {},
+                  ),
+                  NavBar(
+                    navIcon: Icons.watch_later_rounded,
+                    tapFunc: () {
+                      print("Can tap");
+                      Navigator.of(context).pushNamed(overviewRoute);
+                      print("tap tap");
+                    },
+                  ),
+                  NavBar(
+                    navIcon: Icons.notifications,
+                    tapFunc: () {},
+                  ),
+                  NavBar(
+                    navIcon: Icons.settings,
+                    tapFunc: () {},
+                  ),
+                ],
               ),
             )
           ],
         ),
       )),
+    );
+  }
+}
+
+class NavBar extends StatelessWidget {
+  final IconData navIcon;
+  final VoidCallback tapFunc;
+  const NavBar({
+    Key? key,
+    required this.navIcon,
+    required this.tapFunc,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        tapFunc;
+      },
+      child: Container(
+        child: Icon(
+          navIcon,
+          color: Color.fromARGB(255, 19, 130, 221),
+          size: 33,
+        ),
+      ),
     );
   }
 }
@@ -109,38 +188,40 @@ class StatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Icon(
-          statIcon,
-          size: 43,
-          color: Colors.white,
-        ),
-        SizedBox(width: 5),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              value,
-              style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-            ),
-            Text(
-              subValue,
-              style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
-            ),
-          ],
-        ),
-      ],
+    return Container(
+      width: 140,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(
+            statIcon,
+            size: 43,
+            color: Colors.white,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                value,
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+              Text(
+                subValue,
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                    ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
